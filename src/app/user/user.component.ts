@@ -1,4 +1,4 @@
-import { Component,signal,computed } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
 const randomindex = Math.floor(Math.random()* DUMMY_USERS.length);
@@ -13,19 +13,14 @@ const randomindex = Math.floor(Math.random()* DUMMY_USERS.length);
 export class UserComponent {
   
 
-  selectedUser = signal( DUMMY_USERS[randomindex]) ;
+@Input() avatar!: string;
+@Input() name!: string;
 
-  // get imagePath(){
-  //   return 'assets/users/' + this.selectedUser.avatar;
-  // }
-  imagePath = computed(() => 'assets/users/' + this.selectedUser().avatar);
-
-  onSelectUser(){
-
-    console.log("click");
-    const randomindex = Math.floor(Math.random()* DUMMY_USERS.length);
-    this.selectedUser.set(DUMMY_USERS[randomindex]);
-
-  }
+get imagePath(){
+  return 'assets/users/' +this.avatar;
+}
+onSelectUser(){
+  
+}
 
 }
