@@ -14,4 +14,7 @@ export class AppComponent {
   title = 'demoapp';
 
 users = DUMMY_USERS;
+onSelectUser(id:string){
+console.log("selected user id is" +id);
+}
 }
