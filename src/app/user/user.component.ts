@@ -1,7 +1,19 @@
-import { Component,computed,Input,Output,EventEmitter } from '@angular/core';
+import { Component,computed,EventEmitter,Input,Output,output } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
-const randomindex = Math.floor(Math.random()* DUMMY_USERS.length);
+type User ={
+  id: string,
+  avatar: string,
+  name:string,
+}
+
+interface UserInterface  {
+    id: string,
+  avatar: string,
+  name:string,
+}
+
+
 
 @Component({
   selector: 'app-user',
@@ -13,27 +25,23 @@ const randomindex = Math.floor(Math.random()* DUMMY_USERS.length);
 export class UserComponent {
   
 
-@Input({required: true}) avatar!: string;
-@Input({ required: true}) name!: string;
-@Input({required: true}) id!:string;
+// @Input() avatar?: string;
+// @Input({ required: true}) name!: string;
+// @Input({required: true}) id!:string;
 
-@Output() select = new EventEmitter();
+@Input({required: true}) user!:User
+
+@Output() select = new EventEmitter<string>();
 
 
-// avatar = input.required<string>();
-// name = input.required<string>();
 
-// imagePath = computed(()=> {
-//   return 'assets/users/' +this.avatar()
-// });
 
-// imagePath = computed(() => 'assets/users/' +this.avatar());
 
 get imagePath(){
-  return 'assets/users/' +this.avatar;
+  return 'assets/users/' +this.user.avatar;
 }
 onSelectUser(){
-this.select.emit(this.id);
+this.select.emit(this.user.id);
 }
 
 }
