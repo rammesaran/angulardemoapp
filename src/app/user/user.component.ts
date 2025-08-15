@@ -7,11 +7,7 @@ type User ={
   name:string,
 }
 
-interface UserInterface  {
-    id: string,
-  avatar: string,
-  name:string,
-}
+
 
 
 
@@ -28,6 +24,8 @@ export class UserComponent {
 // @Input() avatar?: string;
 // @Input({ required: true}) name!: string;
 // @Input({required: true}) id!:string;
+
+@Input({required: true}) selected!: boolean;
 
 @Input({required: true}) user!:User
 

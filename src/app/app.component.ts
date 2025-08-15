@@ -4,10 +4,11 @@ import { HeaderComponent } from './header/header.component';
 import { UserComponent } from "./user/user.component";
 import { DUMMY_USERS } from './dummy-users';
 import { TaskComponent } from './task/task.component';
+import { TagComponent } from './task/tag/tag.component';
 
 @Component({
   selector: 'app-root',
-  imports: [ HeaderComponent, UserComponent,TaskComponent],
+  imports: [ HeaderComponent, UserComponent,TaskComponent,TagComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -15,15 +16,15 @@ export class AppComponent {
   title = 'demoapp';
 
 users = DUMMY_USERS;
-selectedName = "";
+selectedUserId?: string;
+
+get selectedUser(){
+  return this.users.find((user) => user.id === this.selectedUserId);
+}
+
 onSelectUser(id:string){
-console.log("selected user id is" +id);
 
+this.selectedUserId = id;
 
-
- let founduser = DUMMY_USERS.find(user => user.id ==id);
- console.log(founduser);
- this.selectedName = founduser!.name;
- console.log( this.selectedName);
 }
 }
